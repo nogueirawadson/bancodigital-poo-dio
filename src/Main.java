@@ -1,41 +1,65 @@
+import org.dio.banco.bancodeContas.ContasList;
+import org.dio.banco.cliente.Conta;
+import org.dio.banco.cliente.DadosConta;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+
 public class Main {
     public static void main(String[] args) {
-        Conta conta1 = new Conta();
-        Conta conta2 = new Conta();
-        List<Conta> contas = new ArrayList<>();
+
+
+        ContasList lista = new ContasList();
+
+        Scanner sc = new Scanner(System.in);
+       Conta d1 = new Conta();
+       Conta d2 = new Conta();
+       Conta d3 = new Conta();
+
+
+
+       d1.Conta("Wadson", "Corrente", 1232, "2222", 800);
+
+       d2.Conta("Nogueira", "Corrente", 1232, "2233", 800);
+
+       lista.getContas().add(d1);
+       lista.getContas().add(d2);
+
+       d1.transferir(200, d1, d2);
+        System.out.println("Saldo conta d1: Transferência " + d1.getSaldo());
+       d1.sacar(200, d1);
+        System.out.println("Saldo conta d1: Saque " + d1.getSaldo());
+       d1.depositar(300, d1);
+       System.out.println("Saldo conta d1: Deposito " + d1.getSaldo());
+
+        System.out.println("Saldo conta d2: Transferência recebida " + d2.getSaldo());
+        System.out.println(lista);
+        System.out.println(
+                lista.getContas().stream()
+                .map(Conta::getSaldo)
+                .reduce(Double::sum)
+        );
 
 
 
 
 
-        conta1.Conta(new Cliente("Wadson"), new DadosConta("Poupança", 1233, "0009"),  200.0);
-        conta2.Conta(new Cliente("Nogueira"), new DadosConta("Corrente", 33221, "0009"), 00.0);
-        contas.add(conta1);
-        contas.add(conta2);
 
-
-
-        conta2.transferir(200, conta1, conta2);
-        System.out.println(conta1.getSaldo());
-        System.out.println(conta2.getSaldo());
 
 
         //contas.stream().filter(conta ->  conta1.getCliente().getNomeCliente().equals("Wadson"));
         //.forEach(System.out::println);
 
-        contas.forEach(conta -> {
+        /**contas.forEach(conta -> {
             String nomeCliente = conta.getCliente().getNomeCliente();
             if (nomeCliente.equals("Wadson")) {
                 System.out.println(nomeCliente);
             }
         });
 
-    }
+**/    }
 
 
     }
